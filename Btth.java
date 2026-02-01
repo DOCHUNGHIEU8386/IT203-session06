@@ -1,99 +1,105 @@
-class BankAccount {
-    // ===== Thuộc tính (Encapsulation) =====
-    private String accountNumber;
-    private String accountHolder;
-    private double balance;
+// Lớp TaiKhoanNganHang
+class TaiKhoanNganHang {
+    // ===== Thuộc tính (Đóng gói) =====
+    private String soTaiKhoan;
+    private String tenChuTK;
+    private double soDu;
 
     // ===== Constructor không tham số =====
-    public BankAccount() {
-        this.accountNumber = "UNKNOWN";
-        this.accountHolder = "NO NAME";
-        this.balance = 0;
+    public TaiKhoanNganHang() {
+        this.soTaiKhoan = "CHUA_CO";
+        this.tenChuTK = "CHUA_XAC_DINH";
+        this.soDu = 0;
     }
 
-    // ===== Constructor có tham số (dùng this) =====
-    public BankAccount(String accountNumber, String accountHolder, double balance) {
-        this.accountNumber = accountNumber;
-        this.accountHolder = accountHolder;
-        setBalance(balance); // kiểm tra qua setter
+    // ===== Constructor có tham số =====
+    public TaiKhoanNganHang(String soTaiKhoan, String tenChuTK, double soDu) {
+        this.soTaiKhoan = soTaiKhoan;
+        this.tenChuTK = tenChuTK;
+        setSoDu(soDu);
     }
 
     // ===== Getter =====
-    public String getAccountNumber() {
-        return accountNumber;
+    public String getSoTaiKhoan() {
+        return soTaiKhoan;
     }
 
-    public String getAccountHolder() {
-        return accountHolder;
+    public String getTenChuTK() {
+        return tenChuTK;
     }
 
-    public double getBalance() {
-        return balance;
+    public double getSoDu() {
+        return soDu;
     }
 
-    // ===== Setter (kiểm tra dữ liệu hợp lệ) =====
-    public void setBalance(double balance) {
-        if (balance >= 0) {
-            this.balance = balance;
+    // ===== Setter kiểm tra hợp lệ =====
+    public void setSoDu(double soDu) {
+        if (soDu >= 0) {
+            this.soDu = soDu;
         } else {
-            System.out.println("So du khong duoc am. Gan ve 0.");
-            this.balance = 0;
+            System.out.println("So du khong hop le, gan ve 0");
+            this.soDu = 0;
         }
     }
 
-    // ===== Nghiệp vụ: Nạp tiền =====
-    public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-            System.out.println("Nap tien thanh cong: " + amount);
+    // ===== Nghiệp vụ: Gửi tiền =====
+    public void guiTien(double soTien) {
+        if (soTien > 0) {
+            soDu += soTien;
+            System.out.println("Gui tien thanh cong: " + soTien);
         } else {
-            System.out.println("So tien nap phai > 0");
+            System.out.println("So tien gui phai > 0");
         }
     }
 
     // ===== Nghiệp vụ: Rút tiền =====
-    public void withdraw(double amount) {
-        if (amount <= 0) {
+    public void rutTien(double soTien) {
+        if (soTien <= 0) {
             System.out.println("So tien rut phai > 0");
-        } else if (amount > balance) {
+        } else if (soTien > soDu) {
             System.out.println("So du khong du de rut");
         } else {
-            balance -= amount;
-            System.out.println("Rut tien thanh cong: " + amount);
+            soDu -= soTien;
+            System.out.println("Rut tien thanh cong: " + soTien);
         }
     }
 
     // ===== Hiển thị thông tin =====
-    public void displayInfo() {
-        System.out.println("So tai khoan: " + accountNumber);
-        System.out.println("Chu tai khoan: " + accountHolder);
-        System.out.println("So du: " + balance);
-        System.out.println("---------------------------");
+    public void hienThiThongTin() {
+        System.out.println("So tai khoan : " + soTaiKhoan);
+        System.out.println("Chu tai khoan: " + tenChuTK);
+        System.out.println("So du        : " + soDu);
+        System.out.println("--------------------------------");
     }
 }
 
-public class Btth {
+// Lớp chạy chương trình
+public class BaiTapTaiKhoanNganHang {
     public static void main(String[] args) {
 
-        // Tạo đối tượng bằng constructor không tham số
-        BankAccount acc1 = new BankAccount();
+        // Tạo tài khoản không tham số
+        TaiKhoanNganHang tk1 = new TaiKhoanNganHang();
 
-        // Tạo đối tượng bằng constructor có tham số
-        BankAccount acc2 = new BankAccount("ACB001", "Ngo Quang Anh", 5000);
+        // Tạo tài khoản có tham số
+        TaiKhoanNganHang tk2 = new TaiKhoanNganHang(
+                "VCB001",
+                "Hieu Quang Ngoc",
+                10000000
+        );
 
         // Hiển thị ban đầu
-        acc1.displayInfo();
-        acc2.displayInfo();
+        tk1.hienThiThongTin();
+        tk2.hienThiThongTin();
 
-        // Thao tác với acc1
-        acc1.deposit(2000);
-        acc1.withdraw(500);
-        acc1.displayInfo();
+        // Thao tác với tk1
+        tk1.guiTien(3000000);
+        tk1.rutTien(500000);
+        tk1.hienThiThongTin();
 
-        // Thao tác với acc2
-        acc2.deposit(3000);
-        acc2.withdraw(10000); // rút quá số dư
-        acc2.withdraw(2000);
-        acc2.displayInfo();
+        // Thao tác với tk2
+        tk2.guiTien(2000000);
+        tk2.rutTien(15000000); // rút quá số dư
+        tk2.rutTien(4000000);
+        tk2.hienThiThongTin();
     }
 }
