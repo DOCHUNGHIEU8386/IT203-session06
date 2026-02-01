@@ -1,45 +1,48 @@
-class Employee {
-    private String employeeId;
-    private String employeeName;
-    private double salary;
+// Lớp NhanVien
+class NhanVien {
+    private String maNV;
+    private String hoTen;
+    private double luong;
 
-    // constructor khong tham so
-    public Employee(){
-        this.employeeId = "";
-        this.employeeName = "";
-        this.salary = 0;
+    // Constructor không tham số
+    public NhanVien() {
+        this.maNV = "";
+        this.hoTen = "";
+        this.luong = 0;
     }
 
-    // constructor co ma va ten
-    public Employee(String employeeId , String employeeName){
-        this.employeeId = employeeId;
-        this.employeeName = employeeName;
-        this.salary = 0;
+    // Constructor có mã và họ tên
+    public NhanVien(String maNV, String hoTen) {
+        this.maNV = maNV;
+        this.hoTen = hoTen;
+        this.luong = 0;
     }
 
-    //constructor co day du
-    public Employee(String employeeId , String employeeName , double salary){
-        this.employeeId = employeeId;
-        this.employeeName = employeeName;
-        this.salary = salary;
+    // Constructor đầy đủ thông tin
+    public NhanVien(String maNV, String hoTen, double luong) {
+        this.maNV = maNV;
+        this.hoTen = hoTen;
+        this.luong = luong;
     }
 
-    public void displayInfo(){
-        System.out.println("Ma nhan vien :"+employeeId);
-        System.out.println("Ten nhan vien :"+employeeId);
-        System.out.println("Luong :"+salary);
-        System.out.println("--------------------");
+    public void hienThiThongTin() {
+        System.out.println("Ma nhan vien : " + maNV);
+        System.out.println("Ho va ten    : " + hoTen);
+        System.out.println("Luong        : " + luong);
+        System.out.println("--------------------------------");
     }
 }
 
-public class B4 {
-    public static void main(String[] args){
-        Employee employee1 = new Employee();
-        Employee employee2 = new Employee("NV1" , "Ngo quang anh");
-        Employee employee3 = new Employee("NV2" , "Anh Quang" , 50000000);
+// Lớp chạy chương trình
+public class BaiTapNhanVien {
+    public static void main(String[] args) {
 
-        employee1.displayInfo();
-        employee2.displayInfo();
-        employee3.displayInfo();
+        NhanVien nv1 = new NhanVien();
+        NhanVien nv2 = new NhanVien("NV01", "Hieu Quang Ngoc");
+        NhanVien nv3 = new NhanVien("NV02", "Nguyen Van B", 18000000);
+
+        nv1.hienThiThongTin();
+        nv2.hienThiThongTin();
+        nv3.hienThiThongTin();
     }
 }
