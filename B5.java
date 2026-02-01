@@ -1,28 +1,35 @@
-class Book{
-    // Biến instance (thuộc tính của đối tượng)
-    private String bookId;
-    private String title;
-    private double price;
+// Lớp Sach
+class Sach {
+    // Thuộc tính của đối tượng
+    private String maSach;
+    private String tenSach;
+    private double gia;
 
-    // Constructor (tham số trùng tên thuộc tính)
-    public Book(String bookId , String title , double price){
-        this.bookId = bookId; // biến instance
-        this.title = title;
-        this.price = price;
+    // Constructor (tham số trùng tên thuộc tính – dùng this)
+    public Sach(String maSach, String tenSach, double gia) {
+        this.maSach = maSach;
+        this.tenSach = tenSach;
+        this.gia = gia;
     }
 
-    public void displayInfo(){
-        System.out.println("Ma sach :"+bookId);
-        System.out.println("Ten sach :"+title);
-        System.out.println("Gia sach :"+price);
-        System.out.println("--------------------");
+    public void hienThiThongTin() {
+        System.out.println("Ma sach : " + maSach);
+        System.out.println("Ten sach: " + tenSach);
+        System.out.println("Gia sach: " + gia);
+        System.out.println("--------------------------------");
     }
 }
 
-public class B5 {
-    public static void main(String[] args){
-        Book book1 = new Book("B01" , "Java Fundermental" , 1200000);
+// Lớp chạy chương trình
+public class BaiTapSach {
+    public static void main(String[] args) {
 
-        book1.displayInfo();
+        Sach sach1 = new Sach(
+                "S001",
+                "Lap trinh Java co ban",
+                350000
+        );
+
+        sach1.hienThiThongTin();
     }
 }
