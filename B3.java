@@ -1,55 +1,62 @@
-class Product{
-    private String productId;
-    private String productName;
-    private double price;
+// Lớp SanPham
+class SanPham {
+    private String maSP;
+    private String tenSP;
+    private double donGia;
 
-    public Product(String productId , String productName , double price){
-        this.productId = productId;
-        this.productName = productName;
-        setPrice(price);
+    public SanPham(String maSP, String tenSP, double donGia) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        setDonGia(donGia);
     }
 
-    public String getProductId(){
-        return productId;
+    public String getMaSP() {
+        return maSP;
     }
 
-    public String getProductName(){
-        return productName;
+    public String getTenSP() {
+        return tenSP;
     }
 
-    public double getPrice(){
-        return price;
+    public double getDonGia() {
+        return donGia;
     }
 
-    public void setPrice(double price){
-        if(price > 0){
-            this.price = price;
-        }else{
-            System.out.println("Gia san pham phai > 0");
-            System.out.println("---------------------");
+    public void setDonGia(double donGia) {
+        if (donGia > 0) {
+            this.donGia = donGia;
+        } else {
+            System.out.println(">> Don gia phai lon hon 0!");
+            System.out.println("--------------------------------");
         }
     }
 
-    public void displayInfo(){
-        System.out.println("Ma san pham :" +productId);
-        System.out.println("Ten san pham :"+productName);
-        System.out.println("Gia san pham :"+price);
-        System.out.println("---------------------");
+    public void hienThiThongTin() {
+        System.out.println("Ma san pham : " + maSP);
+        System.out.println("Ten san pham: " + tenSP);
+        System.out.println("Don gia     : " + donGia);
+        System.out.println("--------------------------------");
     }
 }
 
-public class B3 {
-    public static void main(String[] args){
-        Product product1 = new Product("SP01" , "Iphone 17" , 150000000);
+// Lớp chạy chương trình
+public class BaiTapSanPham {
+    public static void main(String[] args) {
 
-        product1.displayInfo();
+        SanPham sp = new SanPham(
+                "P1001",
+                "Laptop Gaming",
+                25000000
+        );
 
-        product1.setPrice(-1500000000);
+        sp.hienThiThongTin();
 
-        product1.displayInfo();
+        // Thử gán giá không hợp lệ
+        sp.setDonGia(-5000000);
+        sp.hienThiThongTin();
 
-        product1.setPrice(150000000);
-
-        product1.displayInfo();
+        // Gán lại giá hợp lệ
+        sp.setDonGia(23000000);
+        sp.hienThiThongTin();
     }
 }
