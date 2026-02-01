@@ -1,76 +1,99 @@
-class User{
-    private int userId;
-    private String username;
-    private String password;
+// Lớp NguoiDung
+class NguoiDung {
+    private int maND;
+    private String tenDangNhap;
+    private String matKhau;
     private String email;
 
-    private boolean passwordValid = true;
-    private boolean emailValid = true;
+    private boolean hopLeMatKhau = true;
+    private boolean hopLeEmail = true;
 
-    public User(int userId , String username , String password , String email){
-        this.userId = userId;
-        this.username = username;
-        setPassword(password);
+    public NguoiDung(int maND, String tenDangNhap, String matKhau, String email) {
+        this.maND = maND;
+        this.tenDangNhap = tenDangNhap;
+        setMatKhau(matKhau);
         setEmail(email);
     }
 
-    public int getUserId(){
-        return userId;
+    public int getMaND() {
+        return maND;
     }
 
-    public String getUsername(){
-        return username;
+    public String getTenDangNhap() {
+        return tenDangNhap;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
-    public void setPassword(String password){
-        if(password != null && !password.trim().isEmpty()){
-            this.password = password;
-            passwordValid = true;
-        }else{
-            this.password = password;
-            passwordValid = false;
+    public void setMatKhau(String matKhau) {
+        if (matKhau != null && !matKhau.trim().isEmpty()) {
+            this.matKhau = matKhau;
+            hopLeMatKhau = true;
+        } else {
+            this.matKhau = matKhau;
+            hopLeMatKhau = false;
         }
     }
 
-    public void setEmail(String email){
-        if(email != null && email.contains("@")){
+    public void setEmail(String email) {
+        if (email != null && email.contains("@")) {
             this.email = email;
-            emailValid = true;
-        }else{
+            hopLeEmail = true;
+        } else {
             this.email = email;
-            emailValid = false;
+            hopLeEmail = false;
         }
     }
 
-    public void displayInfo(){
-        System.out.println("Ma nguoi dung :"+userId);
-        System.out.println("Ten nguoi dung :"+username);
-        if(emailValid){
-            System.out.println("Email :"+email);
-        }else{
-            System.out.println("Email khong hop le");
+    public void hienThiThongTin() {
+        System.out.println("Ma nguoi dung : " + maND);
+        System.out.println("Ten dang nhap : " + tenDangNhap);
+
+        if (hopLeEmail) {
+            System.out.println("Email         : " + email);
+        } else {
+            System.out.println("Email         : Khong hop le");
         }
-        if(passwordValid){
-            System.out.println("Password :"+password);
-        }else{
-            System.out.println("Password khong duoc rong");
+
+        if (hopLeMatKhau) {
+            System.out.println("Mat khau      : " + matKhau);
+        } else {
+            System.out.println("Mat khau      : Khong duoc rong");
         }
-        System.out.println("--------------------");
+
+        System.out.println("--------------------------------");
     }
 }
 
-public class B6 {
-    public static void main(String[] args){
-        User user1 = new User(1 , "ngo quang anh" , "190303" , "ngoquanganh2003a@gmail.com");
-        User user2 = new User(2 , "anh quang" , "" , "anhquang@gmail.com");
-        User user3 = new User(3 , "quang anh" , "190303" , "anhquang");
+// Lớp chạy chương trình
+public class BaiTapNguoiDung {
+    public static void main(String[] args) {
 
-        user1.displayInfo();
-        user2.displayInfo();
-        user3.displayInfo();
+        NguoiDung nd1 = new NguoiDung(
+                1,
+                "hieuquangngoc",
+                "123456",
+                "hieuquangngoc@gmail.com"
+        );
+
+        NguoiDung nd2 = new NguoiDung(
+                2,
+                "nguyenvana",
+                "",
+                "vana@gmail.com"
+        );
+
+        NguoiDung nd3 = new NguoiDung(
+                3,
+                "tranvanb",
+                "abcdef",
+                "emailkhongdau@"
+        );
+
+        nd1.hienThiThongTin();
+        nd2.hienThiThongTin();
+        nd3.hienThiThongTin();
     }
 }
